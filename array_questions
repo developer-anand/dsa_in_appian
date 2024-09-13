@@ -8,17 +8,14 @@ Output: true
 Solution in appian
 
 a!localVariables(
-  local!data: { 1, 2, 3, 3},
-  local!cnt,
-  a!forEach(
-    items: enumerate(4),
+  local!data: { 1, 2, 3, 4, 3, 5, 6, 5, 4, 7 },
+  local!duplicate: a!forEach(
+    items: local!data,
     expression: if(
-      length(wherecontains(
-      local!data[fv!index],local!data
+      length(wherecontains(fv!item, local!data)) > 1,
+      fv!item,
+      {}
     )
-    )>1,
-    {true, "The Duplicate num is ", local!data[fv!index]},
-    false
-    )
-  )
+  ),
+  union(local!duplicate, local!duplicate)
 )
