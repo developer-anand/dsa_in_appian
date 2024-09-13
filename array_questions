@@ -49,3 +49,30 @@ joinarray(
     expression: ri!inpt[(len(ri!inpt) - fv!index) + 1]
   )
 )
+
+/* Q4 */
+
+Rename the string post removing the timestamp and date.
+eg: 
+input: "ANAND_JHA_BTECH_02081997_0626.pdf",
+output: "ANAND_JHA_BTECH.pdf"
+
+a!localVariables(
+  local!val: split(ri!inpt, "_"),
+  local!lenOfVal: length(local!val),
+  local!fileName: remove(
+    local!val,
+    { local!lenOfVal, local!lenOfVal - 1 }
+  ),
+  concat(
+    joinarray(local!fileName, "_"),".",
+    index(
+      split(
+        index(local!val, local!lenOfVal, {}),
+        "."
+      ),
+      2,
+      {}
+    )
+  )
+)
