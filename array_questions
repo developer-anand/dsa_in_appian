@@ -38,3 +38,14 @@ Example 2:
 Input: s = "jar", t = "jam"
 
 Output: false
+
+/* Q3 */
+
+Reverse a string in Appian
+
+joinarray(
+  a!forEach(
+    items: enumerate(len(ri!inpt)) + 1,
+    expression: ri!inpt[(len(ri!inpt) - fv!index) + 1]
+  )
+)
