@@ -39,6 +39,41 @@ Input: s = "jar", t = "jam"
 
 Output: false
 
+a!localVariables(
+  local!str1: "racecar",
+  local!str2:"carrace",
+ /* Creating a Map to store the character and their ASCII for str1 */
+  local!mapofString1: a!forEach(
+    items: enumerate(len(local!str1)),
+    expression: a!map(id:local!str1[fv!item+1],ASCII:cast(1,code(local!str1[fv!item+1])))
+  ),
+/* Creating a Map to store the character and their ASCII for str2 */
+  local!mapofString2: a!forEach(
+    items: enumerate(len(local!str2)),
+    expression: a!map(id:local!str2[fv!item+1],ASCII:cast(1,code(local!str2[fv!item+1])))
+  ),
+/* Sorting the map data based on ASCII */
+  local!datasetStr1: stripwith(tostring(fn!todatasubset(
+    arrayToPage: local!mapofString1,
+    pagingConfiguration: a!pagingInfo(
+      startIndex: 1,
+      batchSize: - 1,
+      sort: a!sortInfo(field:"ASCII" , ascending: true)
+    )
+  ).data.id)," ; "),
+/* Sorting the map data based on ASCII */
+  local!datasetStr2: stripwith(tostring(fn!todatasubset(
+    arrayToPage: local!mapofString2,
+    pagingConfiguration: a!pagingInfo(
+      startIndex: 1,
+      batchSize: - 1,
+      sort: a!sortInfo(field:"ASCII" , ascending: true)
+    )
+  ).data.id)," ; "),
+/* Finally checking for Anagram */
+  exact(local!datasetStr1,local!datasetStr2)
+)
+
 /* Q3 */
 
 Reverse a string in Appian
