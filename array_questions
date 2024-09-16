@@ -192,3 +192,29 @@ a!localVariables(
     "Not a Palindrome"
   )
 )
+
+
+
+/* Q7 */
+K’th Smallest Element in Unsorted Array
+
+Input: arr[] = {7, 10, 4, 3, 20, 15}, K = 3 
+Output: 7
+Input: arr[] = {7, 10, 4, 3, 20, 15}, K = 4 
+Output: 10 
+
+a!localVariables(
+  local!array: { 3, 1, 4, 2, 6, 4 },
+  local!sortedArray: todatasubset(
+    a!forEach(
+      items: local!array,
+      expression: { value: fv!item }
+    ),
+    a!pagingInfo(
+      1,
+      - 1,
+      a!sortInfo(field: "value", ascending: true)
+    )
+  ).data.value,
+  cast(1, local!sortedArray[3])
+)
