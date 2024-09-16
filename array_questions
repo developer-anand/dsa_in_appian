@@ -162,3 +162,33 @@ a!localVariables(
   
   
 )
+
+
+
+/* Q6 */
+Given an String or Number Check if it is Palindrome or Not.
+
+You can return the answer in any order.
+
+Input: N = 12321
+Output: Palindrome
+Explanation: 12321 is a Palindrome number because after reversing its digits, the number becomes 12321 which is same as the original number.
+
+Input: String = ABDA
+Output: Not a Palindrome
+Explanation: ABDA is a  not a Palindrome because after reversing it becomes ADBA which is not same as the original string.
+
+a!localVariables(
+  local!input: "MADAM",
+  local!reverseString: joinarray(
+    a!forEach(
+      items: enumerate(len(local!input)) + 1,
+      expression: local!input[(len(local!input) - fv!index) + 1]
+    )
+  ),
+  if(
+    exact(local!input, local!reverseString),
+    "Palindrome",
+    "Not a Palindrome"
+  )
+)
