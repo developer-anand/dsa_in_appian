@@ -205,6 +205,7 @@ Output: 10
 
 a!localVariables(
   local!array: { 3, 1, 4, 2, 6, 4 },
+  local!k:3,
   local!sortedArray: todatasubset(
     a!forEach(
       items: local!array,
@@ -216,5 +217,5 @@ a!localVariables(
       a!sortInfo(field: "value", ascending: true)
     )
   ).data.value,
-  cast(1, local!sortedArray[3])
+  cast(1, local!sortedArray[k])
 )
