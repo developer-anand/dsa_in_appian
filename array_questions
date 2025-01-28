@@ -167,6 +167,25 @@ Example 3:
 Input: nums = [3,3], target = 6
 Output: [0,1]
 
+a!localVariables(
+  local!data:{1,5,6,5},
+  local!target: 6,
+  local!result :  a!forEach(
+    items: local!data,
+    expression: a!localVariables(
+      local!currVal: fv!item,
+      a!forEach(
+        items: local!data,
+        expression: if(
+          sum(local!currVal,fv!item)=local!target,
+          {local!currVal,fv!item},
+          ""
+        )
+      )
+    )
+  ),
+  reject(fn!isnull,union(local!result,local!result))
+)
 
 a!localVariables(
   local!nums: { 3,2,4},
