@@ -1,3 +1,21 @@
+#Q Sort in Alphabetical order
+ todatasubset(
+  a!forEach(
+    items: {"India","UK", "PAK", "CHA"},
+    expression: {value : fv!item}
+    
+  ),
+  a!pagingInfo(
+    startIndex: 1,
+    batchSize: -1,
+    sort: a!sortInfo(
+      field: "value",
+      ascending: true()
+    )
+  )
+  ).data
+
+
 #Q conver A in a using char and code #
 a!localVariables(
   local!set: "ABC",
