@@ -1,3 +1,11 @@
+#Q print star pattern
+
+a!forEach(
+  items: enumerate(5)+1,
+  expression: joinarray(repeat(5-fv!index+1,"*"))
+)
+
+
 #Q Sort in Alphabetical order
  todatasubset(
   a!forEach(
