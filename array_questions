@@ -1,4 +1,11 @@
 #Q print star pattern
+a!localVariables(
+  local!a: enumerate(5)+1,
+  a!forEach(
+    items: local!a,
+    expression: joinarray(repeat(fv!index,"*"))
+  )
+  )
 
 a!forEach(
   items: enumerate(5)+1,
